@@ -1,0 +1,61 @@
+@charset "GB2312";
+.banner_box19{width:100%;height:648px;overflow:hidden;background:url(http://zw.shichuedu.com/resources/static/home/img/top2019.jpg) scroll no-repeat center top;margin:0 auto;position:relative;background-color: #130948;}
+.banner_box{width:100%;height:648px;overflow:hidden;background:url(http://zw.shichuedu.com/resources/static/home/img/top.jpg) scroll no-repeat center top;margin:0 auto;position:relative;background-color: #130948;}
+.circle_outer{width:957px;height:957px;background:url(http://zw.shichuedu.com/resources/static/home/img/yuanquan01.png) no-repeat center top;margin:0 auto;position:absolute;top:-200px;}
+@keyframes zheng-rotate{100%{-webkit-transform:rotate(360deg);-moz-transform:rotate(360deg);-ms-transform:rotate(360deg);-o-transform:rotate(360deg);transform:rotate(360deg)}}
+.zheng-rotate-anim{-webkit-transform-origin:center center;-moz-transform-origin:center center;-ms-transform-origin:center center;-o-transform-origin:center center;transform-origin:center center;-webkit-animation:zheng-rotate 62s linear 0s infinite;-moz-animation:zheng-rotate 62s linear 0s infinite;-ms-animation:zheng-rotate 62s linear 0s infinite;animation:zheng-rotate 62s linear 0s infinite;}
+.circle_inner{width:474px;height:474px;background:url(http://zw.shichuedu.com/resources/static/home/img/yuanquan02.png) no-repeat center top;margin:0 auto;position:absolute;top:42px;margin-left: 257px;}
+@keyframes fan-rotate{100%{-webkit-transform:rotate(-360deg);-moz-transform:rotate(-360deg);-ms-transform:rotate(-360deg);-o-transform:rotate(-360deg);transform:rotate(-360deg)}}
+.fan-rotate-anim{-webkit-transform-origin:center center;-moz-transform-origin:center center;-ms-transform-origin:center center;-o-transform-origin:center center;transform-origin:center center;-webkit-animation:fan-rotate 16s linear 0s infinite;-moz-animation:fan-rotate 16s linear 0s infinite;-ms-animation:fan-rotate 16s linear 0s infinite;animation:fan-rotate 16s linear 0s infinite;}
+.tushuo{width:382px;height:239px;background:url(http://zw.shichuedu.com/resources/static/home/img/tushuo.png) no-repeat center top;margin:0 auto;position:absolute;top:106px;margin-left: 300px;animation:mymove 1s;-moz-animation:mymove 1s;/* Firefox*/-webkit-animation:mymove 1s;/* Safari and Chrome*/-o-animation:mymove 1s;/* Opera*/}
+@keyframes mymove{0%{top:0px;}50%{top:106px;}75%{top:33px;}100%{top:106px;}}
+@-moz-keyframes mymove{0%{top:0px;}50%{top:106px;}75%{top:33px;}100%{top:106px;}}
+@-webkit-keyframes mymove{0%{top:0px;}50%{top:106px;}75%{top:33px;}100%{top:106px;}}
+@-o-keyframes mymove{0%{top:0px;}50%{top:106px;}75%{top:33px;}100%{top:106px;}}
+.btl{background: #333333; text-align:center; color: #FFF; font-size:16px; padding: 10px 0;}
+.btl a{color: #FFFD39;}
+.btl h2{font: 24px/44px "\5FAE\8F6F\96C5\9ED1"; text-align: center; color: #fff;}
+img.group {display: inline-block;width: 80px;vertical-align: middle;}
+.job_content.gkrshz td.tsbz {font-size:13px;padding: 6px;}
+.job_content.gkrshz td.tsbz span{color: #f00;font-size: 15px;}
+.content_box{width:100%;overflow:hidden;padding:50px 0 30px;}
+.Widths{width:1000px;margin:0 auto;}
+.ht_banner{display:none;}
+.job_content table{background: url(http://zw.shichuedu.com/resources/images/shuiying.jpg);}
+.zhankuang{overflow:hidden;padding:50px 0;}
+div#bmrstj {height: 400px;margin-top: 0;}
+.zhankuang2{width:1000px;margin:0 auto;}
+.zhankuang3{margin:0 auto;overflow:hidden;padding-top: 15px;padding-bottom: 5px;background: #fff;}
+.zhankuang3_left{width: 710px;float:left;}
+.zhankuang3 .p1{color:#8658bb;font-size:18px;text-align: center;}
+.zhankuang3 .p2{color:#333333;font-size:14px;line-height: 36px;display: block;margin-bottom: 10px;text-align: center;}
+.zhankuang3 .p2 span{color: #ff6d6d;font-size: 24px;font-weight:bold;}
+.zhankuang3_right{width: 392px;height: 400px;float: right;margin-right: 10px;}
+.zhankuang3_right .dl01{width: 48%;float:left;margin: 0 1%;text-align:center;color: #fff;height: 340px;background: #ff6d6d;}
+.zhankuang3_right .dl01 h2{font-size: 22px;margin-top:20px;color: #fff;}.zhankuang3_right .dl01 img{margin: 25px auto 0;}
+.zhankuang3_right .dl01 dt{font-size:40px;margin-top: 40px;}
+.zhankuang3_right .dl01 dd{font-size:18px;margin-top:28px;}
+.zhankuang3_right .dl02{color: #fff;background: #494949;}
+.rili2016 h1{clear:both;text-align:center;font-size:30px;color:#f16d7c;height:60px;line-height:60px;margin-top:10px;}
+#htechart{width:100%;height:700px;margin-top:10px;}
+#htechartzh{width:100%;height: 500px;margin-top:10px;}
+#htechart2{width:100%;height:700px;margin-top:10px;}
+#htechartzh2{width:100%;height: 500px;margin-top:10px;}
+@media screen and (max-width:1000px){.ht_banner{display:block;}.banner_box{display:none;}.banner_box19{display:none;}
+.zhankuang3{width: 100%;}
+.zhankuang3_left{width: 100%; float: none;}
+.zhankuang3_right{width: 100%;float: none;margin: 0;height: auto;}
+.btl h2{font: bold 16px/34px "\5FAE\8F6F\96C5\9ED1";}
+.btl{font-size: 13px; padding: 2px 0;}
+.zhankuang3_right .dl01 dd{font-size: 14px; margin-top: 10px; line-height: 22px; margin-bottom: 5px;}
+.zhankuang3_right .dl01 h2{margin-top: 5px;}
+.zhankuang3_right .dl01 h2{font-size: 16px;}
+.zhankuang3_right .dl01 img{margin-top: 5px;}
+.zhankuang3_right .dl01 dt{font-size: 40px; margin-top: 10px;}
+.zhankuang3_right .dl01{height: auto;}
+.zhankuang3 .p2 span{font-size: 16px;}
+}
+@media screen and (max-width:600px){
+#htechart{height:280px;display:none;}#htechartzh{height:500px;;}
+.job_content.gkrshz td {padding: 0;font-size: 12px;}
+.job_content.gkrshz td a.num.table4 {padding: 1px;}}

@@ -1,0 +1,14 @@
+.hot-zt{width:98%;margin:5px auto;overflow:hidden;clear: both;}
+.hot-zt h2{display:block;line-height:65px;clear: both;font-size: 45px;color: #535353;text-align: center;letter-spacing: 10px;padding: 25px 0 0;font-family: "Microsoft YaHei";text-shadow: 1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff, 1px 0 1px #fff, 0 1px 1px #fff, 0 -1px 1px #fff, -1px 0 1px #fff;}
+.hot-zt p{line-height: 25px;font-size:18px;color: #535353;text-align: center;padding-bottom:25px;font-family: "Microsoft YaHei";text-shadow: 1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff, 1px 0 1px #fff, 0 1px 1px #fff, 0 -1px 1px #fff, -1px 0 1px #fff;}
+.hot-zt a{display:inline-block;float:left;transition: 0.5s;}
+.hot-zt a:hover {transform: translateY(-5px);}
+.hot-zt a.w2{width:50%;}
+.hot-zt a.w3{width:33.33%;}
+.hot-zt a.w4{width:25%;}
+.hot-zt a.w5{width:20%;}
+.hot-zt a img{display:block;width:98%;margin:2px 1%;border-radius:10px;}
+@media screen and (max-width:1000px){
+.hot-zt a.w4{width:50%;}
+.hot-zt a.w5{width:50%;}
+}

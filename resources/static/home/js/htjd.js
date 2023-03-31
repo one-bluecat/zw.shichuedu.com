@@ -1,0 +1,1 @@
+document.writeln('<a href="http://v.shichuedu.com/"><img src="http://zw.shichuedu.com/resources/static/home/img/top2016070701.jpg" border="0" width="100%"></a>');

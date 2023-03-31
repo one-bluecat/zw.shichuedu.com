@@ -1,0 +1,192 @@
+<?php
+
+error_reporting(0);
+
+class MY_Controller extends CI_Controller
+{
+
+    private $return_data = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model(array('common'));
+        $this->get_system_config();
+    }
+
+
+    //首页职位查询
+    public function home_post_query($where = "")
+    {
+
+        //考区 学段 学科 学历  专业 年龄 是否高校毕业生计划
+        $subject_list = $this->common->home_list('post_table', 'subject', $where, 'subject');
+        $study_section_list = $this->common->home_list('post_table', 'study_section', $where, 'study_section');
+        $degree_list = $this->common->home_list('post_table', 'degree', $where, 'degree');
+        $profession_list = $this->common->home_list('profession', 'profession', $where, 'profession');
+        $age_list = $this->common->home_list('post_table', 'age', $where, 'age');
+        $area_list = $this->common->home_list('post_table', 'province,area', $where, 'province,area', 'province asc');
+        $university_list = $this->common->home_list('post_table', 'university_graduate_plan', $where, 'university_graduate_plan');
+        $areaArr = array();
+        foreach ($area_list as $value) {
+            $province_code = substr($value['province'], 0, 4);
+            $areaArr[$province_code][] = $value;
+        }
+        $this->return_data['subject_list'] = $subject_list;
+        $this->return_data['study_section_list'] = $study_section_list;
+        $this->return_data['degree_list'] = $degree_list;
+        $this->return_data['profession_list'] = $profession_list;
+        $this->return_data['age_list'] = $age_list;
+        $this->return_data['area_list'] = $areaArr;
+        $this->return_data['university_list'] = $university_list;
+        return $this->return_data;
+    }
+
+
+    /**
+     * 城市列表
+     */
+    public function city_list_query()
+    {
+        $city = $this->config->item('city');
+        $city_order = $where = array();
+        $row = 0;
+        foreach ($city as $value) {
+            $city_order[$row] = $value['en'];
+            $row++;
+        }
+        array_multisort($city_order, SORT_ASC, $city);
+
+        $this->return_data['city'] = $city;
+        $this->return_data['city_map'] = $this->config->item('city');
+
+        return $this->return_data;
+
+    }
+
+    /**获取系统配置
+     * @return null
+     */
+    public function get_system_config()
+    {
+        $this->return_data['system_config'] = $this->common->get_system_config();
+    }
+
+
+    /**加载公共视图
+     * @param $view
+     * @param $data
+     */
+    protected function load_home_view($view,$data,$header=null){
+        $this->load->view($header?$header:'public/header',$data);
+        $this->load->view($view);
+        $this->load->view('public/footer');
+    }
+
+    /**加载公共视图
+    * @param $view
+    * @param $data
+    */
+    protected function load_history_view($view,$data,$header=null){
+        $this->load->view($header?$header:'public/history_header',$data);
+        $this->load->view($view);
+        $this->load->view('public/footer');
+    }
+
+    /**加载公共视图
+     * @param $view
+     * @param $data
+     */
+    protected function load_paiming_view($view,$data,$header=null){
+        $this->load->view($header?$header:'paiming/header',$data);
+        $this->load->view($view);
+        $this->load->view('paiming/footer');
+    }
+
+
+
+    public function verify()
+    {
+        $url = "https://ssl.captcha.qq.com/ticket/verify";
+        $params = array(
+            "aid" => "2083709460",
+            "AppSecretKey" => "0J2Kf2JzDM6kourV1zK8QCA**",
+            "Ticket" => $_REQUEST['ticket'],
+            "Randstr" => $_REQUEST['randstr'],
+            "UserIP" => $this->get_ip()
+        );
+//        var_dump($params);
+        $paramstring = http_build_query($params);
+        $content = $this->txcurl($url, $paramstring);
+        $result = json_decode($content, true);
+        if ($result) {
+            if ($result['response'] == 1) {
+//                print_r($result);
+                return true;
+            } else {
+//                echo $result['response'] . ":" . $result['err_msg'];
+                return false;
+            }
+        } else {
+//            echo "请求失败";
+            return false;
+        }
+    }
+
+
+    /**
+     * 请求接口返回内容
+     * @param  string $url [请求的URL地址]
+     * @param  string $params [请求的参数]
+     * @param  int $ipost [是否采用POST形式]
+     * @return  string
+     */
+    private function txcurl($url, $params = false, $ispost = 0)
+    {
+        $httpInfo = array();
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'JuheData');
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        if ($ispost) {
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+            curl_setopt($ch, CURLOPT_URL, $url);
+        } else {
+            if ($params) {
+                curl_setopt($ch, CURLOPT_URL, $url . '?' . $params);
+            } else {
+                curl_setopt($ch, CURLOPT_URL, $url);
+            }
+        }
+        $response = curl_exec($ch);
+        if ($response === FALSE) {
+            //echo "cURL Error: " . curl_error($ch);
+            return false;
+        }
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $httpInfo = array_merge($httpInfo, curl_getinfo($ch));
+        curl_close($ch);
+        return $response;
+    }
+
+
+    private function get_ip()
+    {
+        if (getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
+            $ip = getenv('HTTP_CLIENT_IP');
+        } elseif (getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+        } elseif (getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
+            $ip = getenv('REMOTE_ADDR');
+        } elseif (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $res = preg_match('/[\d\.]{7,15}/', $ip, $matches) ? $matches [0] : '';
+        return $res;
+    }
+}
